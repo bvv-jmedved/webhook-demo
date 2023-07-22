@@ -1,0 +1,26 @@
+- id: hello
+  execute-command: "echo"
+  pass-arguments-to-command:
+    - source: "string"
+      name: "Hello from Webhook!"
+  response-message: "I am working!"
+- id: hello-script
+  execute-command: "/var/scripts/hello.sh"
+  command-working-directory: "/var/scripts"
+  response-message: "Hello script executed"
+- id: hello-docker
+  execute-command: "/var/scripts/hello-docker.sh"
+  command-working-directory: "/var/scripts"
+  response-message: "Hello-docker script executed"
+- id: docker-container-ls
+  execute-command: "/var/scripts/docker-container-ls.sh"
+  command-working-directory: "/var/scripts"
+  response-message: "Docker container ls executed"
+  rigger-rule-mismatch-http-response-code: 411
+  trigger-rule:
+    match:
+      type: value
+      value: 123
+      parameter:
+        source: url
+        name: token
