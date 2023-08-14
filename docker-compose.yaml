@@ -2,11 +2,12 @@ version: "3.9"
 
 services:
   webhook:
-    build: .
+    image: bvvcz/webhook-demo
+    # build: .
     ports:
-      - "9000:9000"
+      - "8081:9000"
     volumes:
-      - ./scripts:/var/scripts
-      - ./webhook:/etc/webhook/
-      - /var/run/docker.sock:/var/run/docker.sock
+    #   - ./scripts:/var/scripts
+    #   - ./webhook:/etc/webhook/
+       - /var/run/docker.sock:/var/run/docker.sock
     command: -verbose -hooks=/etc/webhook/hooks.yaml
